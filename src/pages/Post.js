@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import sanityClient from "../client.js";
-import colorChanger from "../func/colorChanger.js";
 import Loader from "../components/Loader.jsx";
 
 export default function Post() {
@@ -13,7 +12,7 @@ export default function Post() {
   useEffect(() => {
     sanityClient
       .fetch(
-        `*[_type == "post"]{
+        `*[_type == "csharpPosts"]{
                 title,
                 slug,
                 description,
@@ -46,7 +45,6 @@ export default function Post() {
     }
   };
   if (!postData) return <Loader />;
-
   return (
     <main className="padding-block-600">
       <section className="cards-wrapper padding-block-900 padding-lr-600">
@@ -80,8 +78,9 @@ export default function Post() {
                     to={"/post/" + post.slug.current}
                     key={post.slug.current}
                   >
-              Link
+            {post.title}
                   </Link>
+          
                 </article>
               ))}
         </div>

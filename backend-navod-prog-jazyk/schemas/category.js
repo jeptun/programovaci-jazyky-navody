@@ -13,5 +13,11 @@ export default {
       title: 'Description',
       type: 'text',
     },
+    // {
+    //   name: "post",
+    //   title: "Post",
+    //   type: "array",
+    //   of: [{ type: "reference", to: { type: "post" } }],
+    // },
   ],
 }

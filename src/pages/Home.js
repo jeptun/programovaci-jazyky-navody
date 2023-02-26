@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import colorChanger from "../func/colorChanger.js";
 import Loader from "../components/Loader.jsx";
+import { Helmet } from "react-helmet";
 
 export default function Home() {
   const [author, setAuthor] = useState(null);
@@ -15,7 +16,6 @@ export default function Home() {
           name,
           "bio": bio[0].children[0].text,
           "authorImage": image.asset->url,
-          "description": description[0].children[0].text,
       }`
       )
       .then((data) => setAuthor(data[0]))
@@ -25,27 +25,52 @@ export default function Home() {
   if (!author) return <Loader />;
 
   return (
-    <main className="home-container padding-lr-600">
-      <section className="hero">
+    <main className="col-md-10">
+      <Helmet>
+        <meta charSet="utf-8" />
+       
+        <title>{author.name} Page</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+      <section className="container">
         <div className="hero-info">
           <h1>
             Ahoj, jmenuji se <span className="halfcolor">{author.name}.</span>{" "}
             <br />A jsem junior
             <span className="halfcolor"> front-end</span> developer!
           </h1>
-          <p>{author.bio}</p>
-          <p>{author.description}</p>
+          <div>{author.bio}</div>
+
           <NavLink
-            to="/post"
-            className="btn"
+            to="/javascriptPosts"
+            className="btn me-2"
             style={{ borderColor: colorChanger() }}
           >
-            Projekty
+            Javascript Post
+          </NavLink>
+          <NavLink
+            to="/csharpPosts"
+            className="btn me-2"
+            style={{ borderColor: colorChanger() }}
+          >
+            C#
+          </NavLink>
+          <NavLink
+            to="/ReactPost"
+            className="btn me-2"
+            style={{ borderColor: colorChanger() }}
+          >
+            React Post
+          </NavLink>
+          <NavLink
+            to="/otherPosts"
+            className="btn "
+            style={{ borderColor: colorChanger() }}
+          >
+           Ostatní 
           </NavLink>
         </div>
-
       </section>
-  
     </main>
   );
 }

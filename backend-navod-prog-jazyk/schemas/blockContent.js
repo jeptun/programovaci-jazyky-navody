@@ -9,6 +9,7 @@
  *  }
  */
 // eslint-disable-next-line import/no-anonymous-default-export
+
 export default {
   title: "Block Content",
   name: "blockContent",
@@ -27,9 +28,14 @@ export default {
         { title: "H2", value: "h2" },
         { title: "H3", value: "h3" },
         { title: "H4", value: "h4" },
+        { title: "H5", value: "h5" },
+        { title: "H6", value: "h6" },
         { title: "Quote", value: "blockquote" },
       ],
-      lists: [{ title: "Bullet", value: "bullet" }],
+      lists: [
+        { title: "Bullet", value: "bullet" },
+        { title: "Numbered", value: "number" },
+      ],
       // Marks let you mark up inline text in the block editor.
       marks: {
         // Decorators usually describe a single property – e.g. a typographic
@@ -37,7 +43,7 @@ export default {
         decorators: [
           { title: "Strong", value: "strong" },
           { title: "Emphasis", value: "em" },
-          { title: 'Code', value: 'code' },
+          { title: "Code", value: "code" },
         ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
@@ -60,8 +66,13 @@ export default {
     // primitive types such as 'string' and 'number' in the same array
     // as a block type.
     {
+      type: "code",
+      title: "Code Example",
+    },
+    {
       type: "image",
       options: { hotspot: true },
     },
+  
   ],
 };
