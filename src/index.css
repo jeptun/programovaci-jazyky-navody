@@ -35,8 +35,7 @@ pre::before {
   top: 10px;
 }
 code:not([class]) {
-  background-color: #c411e823;
-  color: #c411e8;
+  color: #5c11e8;
   font-size: 1rem;
   font-weight: 600;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
@@ -57,10 +56,10 @@ a:not([class]) {
 }
 
 code:not([class]):before {
-  content: "`";
+  content: "'";
 }
 code:not([class]):after {
-  content: "`";
+  content: "'";
 }
 img:not([class]) {
   width: 100%;
@@ -90,6 +89,15 @@ p:not([class]) {
     height: 100vh;
   }
 }
+/* #my-card{
+  filter: grayscale(90%);
+
+}
+#my-card:hover{
+  filter: grayscale(0%);
+  filter: saturate(1.5);
+
+} */
 
 .bi {
   vertical-align: -0.125em;

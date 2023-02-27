@@ -136,12 +136,19 @@ export default function JavascriptPosts() {
               postData.map((post, index) => (
                 <div className="col" key={index}>
                   <div
-                    className="card card-cover h-100 overflow-hidden text-white rounded-5 "
+                  id="my-card"
+                    className="card my-card card-cover h-100 overflow-hidden text-white rounded-5 "
                     style={{
                       backgroundImage: `url(${post.mainImage.asset.url})`,
+                   
                     }}
                   >
-                    <div className="d-flex flex-column h-100 p-3 pb-3 text-white ">
+                    <div
+                      className="d-flex flex-column h-100 p-3 pb-3 text-white"
+                      style={{
+                        background: "#0a1d1670",
+                      }}
+                    >
                       <Link
                         to={"/post/" + post.slug.current}
                         key={post.slug.current}
