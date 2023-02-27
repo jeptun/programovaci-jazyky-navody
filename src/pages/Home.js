@@ -28,7 +28,7 @@ export default function Home() {
     <main className="col-md-10">
       <Helmet>
         <meta charSet="utf-8" />
-       
+
         <title>{author.name} Page</title>
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
@@ -67,10 +67,10 @@ export default function Home() {
             className="btn "
             style={{ borderColor: colorChanger() }}
           >
-           Ostatní 
+            Ostatní
           </NavLink>
         </div>
-      </section>
+      </section> 
     </main>
   );
 }

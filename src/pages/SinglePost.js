@@ -105,7 +105,8 @@ export default function SinglePost() {
         <meta
           property="og:image"
           content={urlFor(singlePost.mainImage).url()}
-        ></meta>
+        >
+        </meta>
         <meta
           name="seznam-ranking-position"
           content="query-exact: 1.0; query-broad: 1.3; (Google compatible)"
