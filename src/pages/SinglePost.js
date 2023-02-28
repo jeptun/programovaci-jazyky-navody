@@ -11,8 +11,13 @@ import QRCode from "react-qr-code";
 import { BsFillArrowDownCircleFill } from "react-icons/bs";
 import { FaLink } from "react-icons/fa";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-
 import { Helmet } from "react-helmet";
+
+//Todo Smazat nepotrebne importy
+//Todo Smazat Testovaci komponenty
+//Todo Smazat nepotrebne komentare
+//Todo Smazat Todo
+//Todo Nastavit privatni ID pro stranky
 
 /**
  * Builder pro main zobrazení main obrazku
@@ -105,8 +110,7 @@ export default function SinglePost() {
         <meta
           property="og:image"
           content={urlFor(singlePost.mainImage).url()}
-        >
-        </meta>
+        ></meta>
         <meta
           name="seznam-ranking-position"
           content="query-exact: 1.0; query-broad: 1.3; (Google compatible)"
@@ -127,9 +131,7 @@ export default function SinglePost() {
                 />
               </div>
             </div>
-            <h1 className="display-4 fw-bold">
-              {singlePost.title}
-            </h1>
+            <h1 className="display-4 fw-bold">{singlePost.title}</h1>
             <div className=" d-flex gap-2 justify-content-end align-items-center">
               <blockquote className="m-0">photo from</blockquote>
               <a
@@ -246,7 +248,11 @@ export default function SinglePost() {
         </aside> */}
         <section className="row ps-2  my-5 " ref={ref}>
           <article className="col-md-6 col-lg-8">
-            <section>
+            <section
+              style={{
+                display: singlePost.body ? "block" : "none",
+              }}
+            >
               <BlockContent
                 blocks={singlePost.body}
                 serializers={serializers}
@@ -278,7 +284,7 @@ export default function SinglePost() {
                   serializers={serializers}
                   projectId="0qhx0jng"
                   dataset="production"
-                  className="mb-0 text-dark "
+                  className="mb-0 text-dark"
                 />
               </div>
             </div>

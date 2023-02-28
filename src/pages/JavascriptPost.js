@@ -5,6 +5,9 @@ import colorChanger from "../func/colorChanger.js";
 import Loader from "../components/Loader.jsx";
 import imageUrlBuilder from "@sanity/image-url";
 import { Helmet } from "react-helmet";
+
+//Todo Dodelat header
+//Todo Ulozit posledni postData do stavu a zobrazit
 /**
  * Builder pro main zobrazení main obrazku
  */
@@ -57,6 +60,7 @@ export default function JavascriptPosts() {
       setFilteredResults(postData);
     }
   };
+
   if (!postData) return <Loader />;
 
   return (
@@ -67,132 +71,133 @@ export default function JavascriptPosts() {
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
 
-      <section className="container">
-        <h1 className="">Projekty</h1>
-        <h2 className="">Na této stránce naleznete mé projekty</h2>
+      <div>
+        <section className="container">
+          <h1 className="">Projekty</h1>
+          <h2 className="">Na této stránce naleznete mé projekty</h2>
 
-        <input
-          className="search-input"
-          type="text"
-          placeholder="Vyhledávání"
-          onChange={(e) => searchItems(e.target.value)}
-        />
+          <input
+            className="search-input"
+            type="text"
+            placeholder="Vyhledávání"
+            onChange={(e) => searchItems(e.target.value)}
+          />
 
-        <div className="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
-          {searchInput.length > 1
-            ? filteredResults &&
-              filteredResults.map((post, index) => (
-                <div className="col" key={index}>
-                  <div
-                    className="card card-cover h-100 overflow-hidden text-white rounded-5 "
-                    style={{
-                      backgroundImage: `url(${post.mainImage.asset.url})`,
-                    }}
-                  >
-                    <div className="d-flex flex-column h-100 p-3 pb-3 text-white ">
-                      <Link
-                        to={"/post/" + post.slug.current}
-                        key={post.slug.current}
-                        className="nav-link"
-                      >
-                        <h2 className="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold text-white text-center">
-                          {post.title}
-                        </h2>
-                      </Link>
-                      <ul className="d-flex list-unstyled mt-auto">
-                        <li className="me-auto">
-                          <img
-                            src={urlFor(post.authorImage).url()}
-                            alt="Bootstrap"
-                            width="42"
-                            height="42"
-                            className="rounded-circle  "
-                            style={{
-                              background: "#000",
-                            }}
-                          />
-                        </li>
-                        <li className="d-flex align-items-center me-2">
-                          <div className="">
-                            {new Date(post.date).toLocaleDateString()}
-                          </div>
-                        </li>
-                        <li className="d-flex align-items-center">
-                          <div
-                            className=" rounded p-1"
-                            style={{
-                              background: colorChanger(),
-                            }}
-                          >
-                            {post.tags}
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              ))
-            : postData &&
-              postData.map((post, index) => (
-                <div className="col" key={index}>
-                  <div
-                  id="my-card"
-                    className="card my-card card-cover h-100 overflow-hidden text-white rounded-5 "
-                    style={{
-                      backgroundImage: `url(${post.mainImage.asset.url})`,
-                   
-                    }}
-                  >
+          <div className="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5 bg-red-300">
+            {searchInput.length > 1
+              ? filteredResults &&
+                filteredResults.map((post, index) => (
+                  <div className="col" key={index}>
                     <div
-                      className="d-flex flex-column h-100 p-3 pb-3 text-white"
+                      className="card card-cover h-100 overflow-hidden text-white rounded-5 "
                       style={{
-                        background: "#0a1d1670",
+                        backgroundImage: `url(${post.mainImage.asset.url})`,
                       }}
                     >
-                      <Link
-                        to={"/post/" + post.slug.current}
-                        key={post.slug.current}
-                        className="nav-link"
-                      >
-                        <h2 className="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold text-white text-center">
-                          {post.title}
-                        </h2>
-                      </Link>
-                      <ul className="d-flex list-unstyled mt-auto">
-                        <li className="me-auto">
-                          <img
-                            src={urlFor(post.authorImage).url()}
-                            alt="Bootstrap"
-                            width="42"
-                            height="42"
-                            className="rounded-circle"
-                            style={{
-                              background: "#000",
-                            }}
-                          />
-                        </li>
-                        <li className="d-flex align-items-center me-2">
-                          <div className="">
-                            {new Date(post.date).toLocaleDateString()}
-                          </div>
-                        </li>
-                        <li className="d-flex align-items-center">
-                          <div
-                            className=" rounded p-1"
-                            style={{
-                              background: colorChanger(),
-                            }}
-                          >
-                            {post.tags}
-                          </div>
-                        </li>
-                      </ul>
+                      <div className="d-flex flex-column h-100 p-3 pb-3 text-white ">
+                        <Link
+                          to={"/post/" + post.slug.current}
+                          key={post.slug.current}
+                          className="nav-link"
+                        >
+                          <h2 className="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold text-white text-center">
+                            {post.title}
+                          </h2>
+                        </Link>
+                        <ul className="d-flex list-unstyled mt-auto">
+                          <li className="me-auto">
+                            <img
+                              src={urlFor(post.authorImage).url()}
+                              alt="Bootstrap"
+                              width="42"
+                              height="42"
+                              className="rounded-circle  "
+                              style={{
+                                background: "#000",
+                              }}
+                            />
+                          </li>
+                          <li className="d-flex align-items-center me-2">
+                            <div className="">
+                              {new Date(post.date).toLocaleDateString()}
+                            </div>
+                          </li>
+                          <li className="d-flex align-items-center">
+                            <div
+                              className=" rounded p-1"
+                              style={{
+                                background: colorChanger(),
+                              }}
+                            >
+                              {post.tags}
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-        </div>
-      </section>
+                ))
+              : postData &&
+                postData.map((post, index) => (
+                  <div className="col" key={index}>
+                    <div
+                      id="my-card"
+                      className="card my-card card-cover h-100 overflow-hidden text-white rounded-5 "
+                      style={{
+                        backgroundImage: `url(${post.mainImage.asset.url})`,
+                      }}
+                    >
+                      <div
+                        className="d-flex flex-column h-100 p-3 pb-3 text-white"
+                        style={{
+                          background: "#0a1d1670",
+                        }}
+                      >
+                        <Link
+                          to={"/post/" + post.slug.current}
+                          key={post.slug.current}
+                          className="nav-link"
+                        >
+                          <h2 className="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold text-white text-center">
+                            {post.title}
+                          </h2>
+                        </Link>
+                        <ul className="d-flex list-unstyled mt-auto">
+                          <li className="me-auto">
+                            <img
+                              src={urlFor(post.authorImage).url()}
+                              alt="Bootstrap"
+                              width="42"
+                              height="42"
+                              className="rounded-circle"
+                              style={{
+                                background: "#000",
+                              }}
+                            />
+                          </li>
+                          <li className="d-flex align-items-center me-2">
+                            <div className="">
+                              {new Date(post.date).toLocaleDateString()}
+                            </div>
+                          </li>
+                          <li className="d-flex align-items-center">
+                            <div
+                              className=" rounded p-1"
+                              style={{
+                                background: colorChanger(),
+                              }}
+                            >
+                              {post.tags}
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+          </div>
+        </section>
+      </div>
     </main>
   );
 }

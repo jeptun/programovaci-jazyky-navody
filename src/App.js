@@ -12,7 +12,7 @@ import OtherPosts from "./pages/OtherPost";
 function App() {
   return (
     <BrowserRouter>
-    <div className="row d-sm-flex w-100 ">
+    <div className="sm:flex w-full gap-4 p-4 bg-idigo-50">
     {/* <NavBar /> */}
     <NavBarTest/>
       <Switch>

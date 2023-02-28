@@ -5,6 +5,8 @@ import colorChanger from "../func/colorChanger.js";
 import Loader from "../components/Loader.jsx";
 import imageUrlBuilder from "@sanity/image-url";
 import { Helmet } from "react-helmet";
+
+//Todo Dodelat header
 /**
  * Builder pro main zobrazení main obrazku
  */

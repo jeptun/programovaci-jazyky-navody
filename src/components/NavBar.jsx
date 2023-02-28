@@ -50,8 +50,8 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="col-md-2 d-md-block border-end pe-0">
-      <div className="sticky-top  ">
+    <nav className="grid-cols-2 bg-pink-500">
+      <div className="sticky top-0 ">
         <NavLink
           to="/"
           exact

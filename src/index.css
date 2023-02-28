@@ -1,9 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --dark-blue: 238 29% 16%;
   --blue: 221 100% 40%;
   --white: 0 0% 100%;
   --black: 0 0% 10%;
   --selection-bg: 277 100% 50%;
+}
+
+.dark {
+  background-color: #333;
+  color: #fff;
+}
+.light {
+  background-color: #fff;
+  color: #333;
 }
 
 body {

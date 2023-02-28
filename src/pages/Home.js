@@ -25,8 +25,8 @@ export default function Home() {
   if (!author) return <Loader />;
 
   return (
-    <main className="col-md-10">
-      <Helmet>
+    <main className="w-10/12 border rounded-xl shadow-md ">
+      {/* <Helmet>
         <meta charSet="utf-8" />
 
         <title>{author.name} Page</title>
@@ -70,7 +70,61 @@ export default function Home() {
             Ostatní
           </NavLink>
         </div>
-      </section> 
+      </section> */}
+
+      <section class="bg-white text-white rounded-xl">
+        <Helmet>
+          <meta charSet="utf-8" />
+
+          <title>{author.name} Page</title>
+          <link rel="canonical" href="http://mysite.com/example" />
+        </Helmet>
+        <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
+          <div class="mx-auto max-w-3xl text-center">
+            <h1 class="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
+              Understand User Flow.
+              <span class="sm:block"> Increase Conversion. </span>
+            </h1>
+
+            <p class="mx-auto mt-4 max-w-xl sm:text-xl sm:leading-relaxed">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
+              illo tenetur fuga ducimus numquam ea!
+            </p>
+
+            <div class="mt-8 flex flex-wrap justify-center gap-4">
+              <NavLink
+                to="/javascriptPosts"
+                className="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
+                // style={{ borderColor: colorChanger() }}
+              >
+                Javascript Post
+              </NavLink>
+              <NavLink
+                to="/csharpPosts"
+                className="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+                // style={{ borderColor: colorChanger() }}
+              >
+                C#
+              </NavLink>
+
+              <NavLink
+                to="/ReactPost"
+                className="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
+                // style={{ borderColor: colorChanger() }}
+              >
+                React Post
+              </NavLink>
+              <NavLink
+                to="/otherPosts"
+                className="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+                // style={{ borderColor: colorChanger() }}
+              >
+                Ostatní
+              </NavLink>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

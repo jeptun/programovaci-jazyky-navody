@@ -5,6 +5,8 @@ import sanityClient from "../client.js";
 import Loader from "../components/Loader.jsx";
 import imageUrlBuilder from "@sanity/image-url";
 import colorChanger from "../func/colorChanger.js";
+//Todo Dodelat header
+
 /**
  * Builder pro main zobrazení main obrazku
  */
