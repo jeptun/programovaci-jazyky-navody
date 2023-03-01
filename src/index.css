@@ -53,6 +53,7 @@ code:not([class]) {
   font-weight: 600;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     Liberation Mono, Courier New, monospace;
+    background-color: #a079e7a1;
 }
 a:not([class]) {
   color: #4f46e5;

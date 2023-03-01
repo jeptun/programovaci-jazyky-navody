@@ -29,7 +29,7 @@ export default function NavBarTest() {
           <li className="mx-2 my-1">
             <Link
               to="/javascriptPosts"
-              className="link-dark btn-primary rounded my-1  ms-3 bg-white"
+              className="link-dark btn-primary rounded my-1  ms-3 "
             >
               JS/TS
             </Link>
@@ -37,7 +37,7 @@ export default function NavBarTest() {
           <li className="mx-2 my-1">
             <Link
               to="/ReactPost"
-              className="link-dark btn-primary rounded my-1  ms-3 bg-white"
+              className="link-dark btn-primary rounded my-1  ms-3 "
             >
               React
             </Link>
@@ -45,7 +45,7 @@ export default function NavBarTest() {
           <li className="mx-2 my-1">
             <Link
               to="/csharpposts"
-              className="link-dark btn-primary rounded my-1  ms-3 bg-white"
+              className="link-dark btn-primary rounded my-1  ms-3 "
             >
               Csharp
             </Link>
@@ -53,13 +53,12 @@ export default function NavBarTest() {
           <li className="mx-2 my-1">
             <Link
               to="/otherPosts"
-              className="link-dark btn-primary rounded my-1  ms-3 bg-white"
+              className="link-dark btn-primary rounded my-1  ms-3"
             >
               Ostatní
             </Link>
           </li>
         </ul>
-        
       </div>
       <div className="mx-2">
         <span
