@@ -9,12 +9,14 @@ import ReactPost from "./pages/ReactPost";
 import Footer from "./components/Footer";
 import NavBarTest from "./components/NavBarTest";
 import OtherPosts from "./pages/OtherPost";
+import Toggles from "./components/Toggles";
 function App() {
   return (
     <BrowserRouter>
-      <div className="sm:flex w-full gap-4 p-4 bg-idigo-50">
+      <div className="sm:flex bg-idigo-50">
         {/* <NavBar /> */}
         <NavBarTest />
+        <Toggles />
         <Switch>
           <Route component={Home} path="/" exact />
           <Route component={SinglePost} path="/post/:slug" />
@@ -23,8 +25,8 @@ function App() {
           <Route component={ReactPost} path="/ReactPost" />
           <Route component={OtherPosts} path="/otherPosts" />
         </Switch>
+    
       </div>
-      <Footer />
     </BrowserRouter>
   );
 }

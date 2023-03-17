@@ -2,10 +2,9 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="row mx-0 footer bg-black text-white w-100 ">
-      <div className="col-2 bg-red-400 "></div>
-      <div className="col-10  container p-5  ">
-        <span className="text-muted">Place sdddticky footer content here.</span>
+    <footer className=" mx-0 ">
+      <div className="p-5  h-full bg-black text-white w-100  bottom-0 sticky">
+        <span className="text-muted">here.</span>
       </div>
     </footer>
   );

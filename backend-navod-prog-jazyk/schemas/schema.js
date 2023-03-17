@@ -14,6 +14,7 @@ import csharpPosts from "./csharpPosts";
 import reactJs from "./reactJs";
 
 import otherPosts from "./otherPosts";
+import hotTyps from "./hotTyps";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -30,6 +31,7 @@ export default createSchema({
     otherPosts,
     author,
     category,
+    hotTyps,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,

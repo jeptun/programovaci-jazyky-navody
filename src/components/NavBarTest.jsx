@@ -1,16 +1,37 @@
+import React, { useState, useEffect } from "react";
+import sanityClient from "../client.js";
 import { NavLink, Link } from "react-router-dom";
-import useDarkMode from "../hooks/useDarkMode";
+import Loader from "../components/Loader.jsx";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+// import required modules
+import { Autoplay, Navigation } from "swiper";
 
 export default function NavBarTest() {
-  const [colorTheme, setTheme] = useDarkMode();
+  const [postData, setPost] = useState(null);
+
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `*[_type == "hotTips"]{
+                description,
+                category,
+            }`
+      )
+      .then(data => setPost(data))
+      .catch(console.error);
+  }, []);
+
+  console.log(postData, "postData");
+  if (!postData) return <Loader />;
 
   return (
-    <nav className="w-2/12 sticky top-8 h-full ">
-      <div className=" rounded-xl border shadow-md">
-        <NavLink
+    <nav className="flex sm:w-2/12 border-r border-yellow-500 shadow-sm nav">
+      <div className=" sticky w-full flex flex-col top-0 sm:h-screen flex-nowrap ">
+        {/* <NavLink
           to="/"
           exact
-          className="d-flex align-items-center pb-3  link-dark text-decoration-none border-bottom"
+          className="d-flex align-items-center p-4 link-dark text-decoration-none border-bottom text-xl"
         >
           <svg
             className="bi me-2"
@@ -23,80 +44,93 @@ export default function NavBarTest() {
             ></path>
           </svg>
           <span className="fs-8 fw-semibold ">Návody jazyku</span>
-        </NavLink>
+        </NavLink> */}
 
-        <ul className="list-unstyled d-md-block d-flex nav-scroller ">
-          <li className="mx-2 my-1">
+        <ul className="list-unstyled flex-1 gap-4 sm:block flex nav-scroller text-lg p-4">
+          <li className="">
             <Link
               to="/javascriptPosts"
-              className="link-dark btn-primary rounded my-1  ms-3 "
+              className="text-3xl font-bold  underline  hover:underline decoration-4
+             hover:decoration-[#0f9d58] decoration-yellow-400"
             >
               JS/TS
             </Link>
           </li>
-          <li className="mx-2 my-1">
+          <li className="">
             <Link
               to="/ReactPost"
-              className="link-dark btn-primary rounded my-1  ms-3 "
+              className="text-3xl font-bold  underline  hover:underline decoration-4
+             hover:decoration-[#0f9d58] decoration-blue-400"
             >
               React
             </Link>
           </li>
-          <li className="mx-2 my-1">
+          <li className="">
             <Link
               to="/csharpposts"
-              className="link-dark btn-primary rounded my-1  ms-3 "
+              className="text-3xl font-bold  underline  hover:underline decoration-4
+             hover:decoration-[#0f9d58] decoration-green-400"
             >
               Csharp
             </Link>
           </li>
-          <li className="mx-2 my-1">
+          <li className="">
             <Link
               to="/otherPosts"
-              className="link-dark btn-primary rounded my-1  ms-3"
+              className="text-3xl font-bold  underline  hover:underline decoration-4
+             hover:decoration-[#0f9d58] decoration-purple-400"
             >
               Ostatní
             </Link>
           </li>
-          <li className="mx-2 my-1">
-            <span
-              onClick={() => setTheme(colorTheme)}
-              className=" w-9 h-9 flex items-center justify-center cursor-pointer shadow rounded-full transition duration-300 transform hover:-translate-y-0.5"
-            >
-              {colorTheme === "light" ? (
-                <svg
-                  className="w-7 h-7"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="ml-1 w-7 h-7 transform rotate-45"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                  ></path>
-                </svg>
-              )}
-            </span>
-          </li>
         </ul>
+
+        <div className="bottom-0 bg-yellow-400 sticky border-t  animate__animated
+                 animate__bounce p-4 ">
+          {/* <Swiper
+            spaceBetween={30}
+            centeredSlides={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false
+            }}
+            navigation={true}
+            modules={[Autoplay, Navigation]}
+            className=""
+          >
+            {postData.map((post, index) =>
+              <SwiperSlide key={index}>
+                <span className="w-8 h-8 flex bg-teal-400 items-center justify-center
+                    transition duration-300 transform hover:-translate-y-0.5">
+                  <svg
+                    className="w-8 h-8 text-purple-700"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                    />
+                  </svg>
+                </span>
+
+                <div className="flex w-full justify-between mt-4 ">
+                  <h3 className="text-xl pb-2 font-bold underline  decoration-4
+              decoration-teal-400 uppercase ">
+                    Rychlý Typ
+                  </h3>
+                </div>
+                <p className="text-sm font-semibold ">
+                  {post.description}
+                </p>
+              </SwiperSlide>
+            )}
+          </Swiper> */}
+        </div>
       </div>
     </nav>
   );
