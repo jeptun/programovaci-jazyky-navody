@@ -22,11 +22,10 @@ export default function NavBarTest() {
       .catch(console.error);
   }, []);
 
-  console.log(postData, "postData");
   if (!postData) return <Loader />;
 
   return (
-    <nav className="flex sm:w-2/12 nav">
+    <nav className="flex sm:w-2/12 nav shadow-sm">
       <div className=" sticky w-full flex flex-col top-0 sm:h-screen flex-nowrap ">
         {/* <NavLink
           to="/"
@@ -46,7 +45,7 @@ export default function NavBarTest() {
           <span className="fs-8 fw-semibold ">Návody jazyku</span>
         </NavLink> */}
 
-        <ul className="list-unstyled flex-1 flex sm:flex-col text-lg p-4 gap-4">
+        <ul className="list-unstyled flex sm:flex-col text-lg pl-4 pt-4 gap-4">
           <li className="">
             <Link
               to="/javascriptPosts"
@@ -85,52 +84,7 @@ export default function NavBarTest() {
           </li>
         </ul>
 
-        <div className="bottom-0 bg-yellow-400 sticky border-t  animate__animated
-                 animate__bounce p-4 ">
-          {/* <Swiper
-            spaceBetween={30}
-            centeredSlides={true}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false
-            }}
-            navigation={true}
-            modules={[Autoplay, Navigation]}
-            className=""
-          >
-            {postData.map((post, index) =>
-              <SwiperSlide key={index}>
-                <span className="w-8 h-8 flex bg-teal-400 items-center justify-center
-                    transition duration-300 transform hover:-translate-y-0.5">
-                  <svg
-                    className="w-8 h-8 text-purple-700"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                    />
-                  </svg>
-                </span>
-
-                <div className="flex w-full justify-between mt-4 ">
-                  <h3 className="text-xl pb-2 font-bold underline  decoration-4
-              decoration-teal-400 uppercase ">
-                    Rychlý Typ
-                  </h3>
-                </div>
-                <p className="text-sm font-semibold ">
-                  {post.description}
-                </p>
-              </SwiperSlide>
-            )}
-          </Swiper> */}
-        </div>
+      
       </div>
     </nav>
   );
