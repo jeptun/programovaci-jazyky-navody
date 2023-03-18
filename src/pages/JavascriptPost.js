@@ -37,6 +37,7 @@ export default function JavascriptPosts() {
                 githublink,
                 "name": author->name,
                 "authorImage": author->image,
+                
                 mainImage{
                     asset->{
                         _id,
@@ -64,8 +65,7 @@ export default function JavascriptPosts() {
       setFilteredResults(postData);
     }
   };
-
-
+  console.log("test", postData);
   if (!postData) return <Loader />;
 
   return (
@@ -202,43 +202,43 @@ export default function JavascriptPosts() {
                   )
                 : postData &&
                   postData.map((post, index) =>
-                    <article className="flex flex-col border border-yellow-400" key={index}>
-                      <Link
-                        to={"/post/" + post.slug.current}
-                        key={post.slug.current}
-                        className="nav-link"
-                      >
-                        <img
-                          src={post.mainImage.asset.url}
-                          alt={post.title}
-                          className="object-cover w-full h-32  "
-                        />
-                      </Link>
+                    <Link
+                      to={"/post/" + post.slug.current}
+                      key={post.slug.current}
+                      className="flex flex-col border-0 shadow-md"
+                    >
+                      <img
+                        src={post.mainImage.asset.url}
+                        alt={post.title}
+                        className="object-cover w-full h-52  "
+                      />
                       <div className="flex flex-col flex-1 p-3">
-                        <Link
-                          rel="noopener noreferrer"
-                          to={"/post/" + post.slug.current}
-                          aria-label={post.title}
-                        />
-                        <Link
+                        <h2
                           rel="noopener noreferrer"
                           to={"/post/" + post.slug.current}
                           className="flex-1 py-1 text-lg font-semibold leading-snug"
                         >
                           {post.title}
-                        </Link>
-                        <div className="flex-1 py-1 text-md font-normal leading-snug 2">
-                          <h4 className="line-clamp-2">
+                        </h2>
+                        <div className="flex flex-wrap justify-between pt-1 space-x-2">
+                          <span className="opacity-60">
+                            {new Date(post.date).toLocaleDateString()}
+                          </span>
+                          {/* <img
+                           src={urlFor(post.authorImage).url()}
+                            alt={post.title}
+                            className=" rounded-full w-10 h-10 "
+                          /> */}
+                          <div> {post.tags}</div>
+                          <div>{post.name}</div>
+                        </div>
+                        <div className="flex-1 py-1 text-md font-normal leading-snug ">
+                          <h4 className="line-clamp-3 opacity-70">
                             {post.description}
                           </h4>
                         </div>
-                        <div className="flex flex-wrap justify-between pt-3 space-x-2 text-xs">
-                          <span>
-                            {new Date(post.date).toLocaleDateString()}
-                          </span>
-                        </div>
                       </div>
-                    </article>
+                    </Link>
                   )}
             </div>
           </div>

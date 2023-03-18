@@ -26,7 +26,7 @@ export default function NavBarTest() {
   if (!postData) return <Loader />;
 
   return (
-    <nav className="flex sm:w-2/12 border-r border-yellow-500 shadow-sm nav">
+    <nav className="flex sm:w-2/12 nav">
       <div className=" sticky w-full flex flex-col top-0 sm:h-screen flex-nowrap ">
         {/* <NavLink
           to="/"
@@ -46,7 +46,7 @@ export default function NavBarTest() {
           <span className="fs-8 fw-semibold ">Návody jazyku</span>
         </NavLink> */}
 
-        <ul className="list-unstyled flex-1 gap-4 sm:block flex nav-scroller text-lg p-4">
+        <ul className="list-unstyled flex-1 flex sm:flex-col text-lg p-4 gap-4">
           <li className="">
             <Link
               to="/javascriptPosts"

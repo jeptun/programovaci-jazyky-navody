@@ -9,7 +9,7 @@ export default function Toggles() {
   };
 
   return (
-    <div className=" sm:order-last sticky flex flex-col w-fit top-0 h-fit ">
+    <div className=" sm:order-last sticky flex flex-col w-fit sm:top-4 h-fit ">
       <div className="">
       <span
           onClick={() => toggleNav()}

@@ -12,12 +12,12 @@
 
 .dark {
   /* background-color: #333; */
-  background-color: #14213d;
+  background-color: #363636;
   /* background-color: #121212; */
-  color: #ffffff;
+  color: #f9f9f9;
 }
 .light {
-  background-color: #ffffff;
+  background-color: #f9f9f9;
   color: #333;
 }
 
@@ -99,37 +99,7 @@ p:not([class]) {
   line-height: 1.7777778;
   padding-bottom: 1.25rem;
 }
-@media (min-width: 576px) {
-  header {
-    width: 200px;
-    height: 100vh;
-  }
-}
 
-@media (max-width: 528px) {
-  .nav-scroller {
-    position: relative;
-    z-index: 2;
-    overflow-y: hidden;
-  }
-
-  .nav-scroller .nav {
-    display: flex;
-    flex-wrap: nowrap;
-    padding-bottom: 1rem;
-    margin-top: -1px;
-    overflow-x: auto;
-    text-align: center;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .nav-scroller .nav-link {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    font-size: 0.875rem;
-  }
-}
 
 svg .svg-elem-1 {
   fill: #212529;
