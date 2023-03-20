@@ -25,7 +25,7 @@ export default function NavBarTest() {
   if (!postData) return <Loader />;
 
   return (
-    <nav className="flex sm:w-2/12 nav shadow-sm">
+    <nav className="flex sm:w-1/12 nav shadow-sm">
       <div className=" sticky w-full flex flex-col top-0 sm:h-screen flex-nowrap ">
         {/* <NavLink
           to="/"

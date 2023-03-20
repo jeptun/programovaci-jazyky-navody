@@ -13,9 +13,9 @@ import Toggles from "./components/Toggles";
 function App() {
   return (
     <BrowserRouter>
-      <div className="sm:flex bg-idigo-50">
+      <div className=" bg-idigo-50 flex flex-col m-auto">
         {/* <NavBar /> */}
-        <NavBarTest />
+        {/* <NavBarTest /> */}
         <Toggles />
         <Switch>
           <Route component={Home} path="/" exact />
@@ -25,7 +25,6 @@ function App() {
           <Route component={ReactPost} path="/ReactPost" />
           <Route component={OtherPosts} path="/otherPosts" />
         </Switch>
-    
       </div>
     </BrowserRouter>
   );

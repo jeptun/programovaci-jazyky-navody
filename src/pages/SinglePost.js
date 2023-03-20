@@ -32,10 +32,11 @@ export default function SinglePost() {
   const { slug } = useParams();
   const ref = useRef(null);
 
-  useEffect(() => {
-    sanityClient
-      .fetch(
-        `*[slug.current == "${slug}"]{
+  useEffect(
+    () => {
+      sanityClient
+        .fetch(
+          `*[slug.current == "${slug}"]{
             title,
             _id,
             slug,
@@ -65,10 +66,12 @@ export default function SinglePost() {
             "name": author->name,
             "authorImage": author->image
         }`
-      )
-      .then((data) => setSinglePost(data[0]))
-      .catch(console.error);
-  }, [slug]);
+        )
+        .then(data => setSinglePost(data[0]))
+        .catch(console.error);
+    },
+    [slug]
+  );
 
   //nastaveni zobrazeni kodu
   const serializers = {
@@ -87,42 +90,46 @@ export default function SinglePost() {
             {code}
           </SyntaxHighlighter>
         );
-      },
-    },
-  };
-  // reference id
-  const handleClick = () => {
-    ref.current?.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   // kontrola načtení obsahu
   if (!singlePost) return <Loader />;
 
   return (
-    <main className="col-md-10 ps-4 pt-4 mb-4">
+    <main className="py-2 mb-4">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{singlePost.title}</title>
+        <title>
+          {singlePost.title}
+        </title>
         <link rel="canonical" href="http://mysite.com/example" />
-        <meta name="description" content={singlePost.description}></meta>
-        <meta property="og:title" content={singlePost.title}></meta>
-        <meta property="og:description" content={singlePost.description}></meta>
+        <meta name="description" content={singlePost.description} />
+        <meta property="og:title" content={singlePost.title} />
+        <meta property="og:description" content={singlePost.description} />
         <meta
           property="og:image"
           content={urlFor(singlePost.mainImage).url()}
-        ></meta>
+        />
         <meta
           name="seznam-ranking-position"
           content="query-exact: 1.0; query-broad: 1.3; (Google compatible)"
-        ></meta>
+        />
       </Helmet>
-      <div className="container">
-        <aside className=" my-5">
-          <div className="px-2">
+      <div className="">
+        <aside className=" relative w-full px-6 py-6  md:max-w-3xl md:mx-auto lg:max-w-4xl lg:pt-16 lg:pb-28">
+          <div className="">
             <div
               className="overflow-hidden my-4 "
-              style={{ maxHeight: "70vh" }}
+              style={{
+                height: "auto",
+                maxWidth: "100%"
+              }}
             >
+              <h1 className=" sm:text-lg md:text-4xl lg:text-6xl font-black my-8">
+                {singlePost.title}
+              </h1>
               <div className="d-flex justify-content-center">
                 <img
                   className="img-fluid rounded-3"
@@ -131,7 +138,7 @@ export default function SinglePost() {
                 />
               </div>
             </div>
-            <h1 className="display-4 fw-bold">{singlePost.title}</h1>
+
             <div className=" d-flex gap-2 justify-content-end align-items-center">
               <blockquote className="m-0">photo from</blockquote>
               <a
@@ -142,7 +149,6 @@ export default function SinglePost() {
                 {singlePost.imagesSourceFrom}
               </a>
             </div>
-            {/* tady */}
             <div className="row ">
               <figure className="col-12 col-sm-4  d-flex gap-1  h-100   ">
                 <img
@@ -151,7 +157,7 @@ export default function SinglePost() {
                   alt={singlePost.name}
                   style={{
                     width: "50px",
-                    height: "50px",
+                    height: "50px"
                   }}
                 />
 
@@ -166,7 +172,7 @@ export default function SinglePost() {
                   </div>
                 </div>
               </figure>
-              <div className="col-12  col-sm-8 d-flex justify-content-end  h-100">
+              {/* <div className="col-12  col-sm-8 d-flex justify-content-end  h-100">
                 <div className="d-flex gap-1 align-items-center ">
                   <Link
                     onClick={handleClick}
@@ -220,37 +226,15 @@ export default function SinglePost() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </aside>
-        {/* <aside className="my-5">
-          <div className="">
-            <div className="row g-0 border rounded-4 border border-dark overflow-hidden flex-md-row mb-4 position-relative ">
-              <div className="col-md-1 bg-primary border border-4 border-primary"></div>
-              <div
-                className=" col-md-11 p-4 d-flex flex-column position-static"
-                style={{
-                  backgroundColor: "#f0f9ff",
-                }}
-              >
-                <BlockContent
-                  blocks={singlePost.topTips}
-                  serializers={serializers}
-                  projectId="0qhx0jng"
-                  dataset="production"
-                  className="mb-0 text-dark "
-                />
-              </div>
-
-            </div>
-          </div>
-        </aside> */}
-        <section className="row ps-2  my-5 " ref={ref}>
-          <article className="col-md-6 col-lg-8">
+        <section className="" ref={ref}>
+          <article className="relative w-full px-6 py-6  md:max-w-3xl md:mx-auto lg:max-w-4xl lg:pt-16 lg:pb-28">
             <section
               style={{
-                display: singlePost.body ? "block" : "none",
+                display: singlePost.body ? "block" : "none"
               }}
             >
               <BlockContent
@@ -258,36 +242,9 @@ export default function SinglePost() {
                 serializers={serializers}
                 projectId="0qhx0jng"
                 dataset="production"
+                className="mt-8 prose text-current  prose-slate mx-auto lg:prose-lg xl:prose-xl"
               />
             </section>
-          </article>
-          <article
-            className="col-md-6 col-lg-4 mb-3 "
-            style={{
-              display: singlePost.sideTips ? "block" : "none",
-            }}
-          >
-            <div
-              className="position-sticky"
-              style={{
-                top: "4rem",
-              }}
-            >
-              <div
-                className=" p-4 mb-3 bordericon "
-                style={{
-                  backgroundColor: "#fffbeb",
-                }}
-              >
-                <BlockContent
-                  blocks={singlePost.sideTips}
-                  serializers={serializers}
-                  projectId="0qhx0jng"
-                  dataset="production"
-                  className="mb-0 text-dark"
-                />
-              </div>
-            </div>
           </article>
         </section>
       </div>
