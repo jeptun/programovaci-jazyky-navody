@@ -17,7 +17,10 @@ export default {
         type: "slug",
         options: {
           source: "title",
-          maxLength: 96,
+            slugify: input => input
+                         .toLowerCase()
+                         .replace(/\s+/g, '-')
+                         .slice(0, 96)
         },
       },
       {
@@ -46,7 +49,7 @@ export default {
         name: "imagesSource",
         title: "Images Source",
         description: "*Povinné",
-        type: "string",
+        type: "url",
       },
       {
         name: "imagesSourceFrom",
@@ -61,18 +64,6 @@ export default {
         type: "text",
       },
       {
-        name: "topTips",
-        title: "Top Tips",
-        description: "*Povinné",
-        type: "blockContent",
-      },
-      {
-        name: "categories",
-        title: "Categories",
-        type: "array",
-        of: [{ type: "reference", to: { type: "category" } }],
-      },
-      {
         name: "date",
         type: "datetime",
         description: "*Volitelné čas vytvoření ",
@@ -80,12 +71,6 @@ export default {
       {
         name: "body",
         title: "Body",
-        description: "*Povinné",
-        type: "blockContent",
-      },
-      {
-        name: "sideTips",
-        title: "Side Tips",
         description: "*Povinné",
         type: "blockContent",
       },
@@ -102,13 +87,6 @@ export default {
         options: {
           layout: "tags",
         },
-      },
-  
-      {
-        name: "prewlink",
-        title: "Prew link",
-        description: "Odkaz tuto na stranku. Generuje QR kod a link",
-        type: "url",
       },
     ],
   

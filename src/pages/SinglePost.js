@@ -90,11 +90,9 @@ export default function SinglePost() {
   return (
     <main className="py-2 mb-4">
       <Helmet>
-        <meta charSet="utf-8" />
         <title>
           {singlePost.title}
         </title>
-        <link rel="canonical" href="http://mysite.com/example" />
         <meta name="description" content={singlePost.description} />
         <meta property="og:title" content={singlePost.title} />
         <meta property="og:description" content={singlePost.description} />

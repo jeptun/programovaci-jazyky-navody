@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import sanityClient from "../client.js";
 import Loader from "../components/Loader.jsx";
 import { Helmet } from "react-helmet";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 //Todo Dodelat header
 /**
  * Builder pro main zobrazení main obrazku
@@ -60,8 +61,24 @@ export default function OtherPost() {
     <main className="w-full pl-2">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Na této stránce naleznete Javascript projekty</title>
-        <link rel="canonical" href="http://mysite.com/example" />
+        <title>Moje Návody - Ostatní</title>
+        <meta
+          name="description"
+          content="Různé návody pro programátory a kodéry."
+        />
+        <meta
+          property="og:title"
+          content="Různé návody pro programátory a kodéry."
+        />
+        <meta
+          property="og:description"
+          content="  Vítejte na blogu, který slouží jako zdroj informací pro všechny vývojáře a programátory!
+         Najdete zde rozmanitou škálu témat, včetně Javascriptu, Typescriptu, C#, Reactu, CSS a mnoho dalšího."
+        />
+        <meta
+          name="seznam-ranking-position"
+          content="query-exact: 1.0; query-broad: 1.3; (Google compatible)"
+        />
       </Helmet>
       <section className="py-6 sm:py-12 max-w-6xl mx-auto">
         <div className="container p-6 mx-auto space-y-8">
@@ -81,15 +98,15 @@ export default function OtherPost() {
             {searchInput.length > 1
               ? filteredResults &&
                 filteredResults.map((post, index) =>
-                <Link
+                  <Link
                     to={"/post/" + post.slug.current}
                     key={post.slug.current}
                     className="flex md:flex-row flex-col shadow-md rounded w-full"
                   >
-                    <img
+                    <LazyLoadImage
                       src={post.mainImage.asset.url}
-                      alt={post.title}
                       className="h-80 w-full md:h-80 md:w-96 lg:h-60 lg:w-80"
+                      alt={post.title}
                     />
                     <div className=" ">
                       <h2
@@ -121,15 +138,15 @@ export default function OtherPost() {
                 )
               : postData &&
                 postData.map((post, index) =>
-                <Link
+                  <Link
                     to={"/post/" + post.slug.current}
                     key={post.slug.current}
                     className="flex md:flex-row flex-col shadow-md rounded w-full"
                   >
-                    <img
+                    <LazyLoadImage
                       src={post.mainImage.asset.url}
-                      alt={post.title}
                       className="h-80 w-full md:h-80 md:w-96 lg:h-60 lg:w-80"
+                      alt={post.title}
                     />
                     <div className=" ">
                       <h2
