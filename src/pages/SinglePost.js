@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import sanityClient from "../client.js";
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -6,9 +6,9 @@ import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import BlockContent from "@sanity/block-content-to-react";
 import imageUrlBuilder from "@sanity/image-url";
 import Loader from "../components/Loader.jsx";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Helmet } from "react-helmet";
-
+import colorChanger from "../func/colorChanger.js";
 /**
  * Builder pro main zobrazení main obrazku
  */
@@ -20,7 +20,6 @@ function urlFor(source) {
 export default function SinglePost() {
   const [singlePost, setSinglePost] = useState(null);
   const { slug } = useParams();
-  const ref = useRef(null);
 
   useEffect(
     () => {
@@ -119,7 +118,7 @@ export default function SinglePost() {
                 {singlePost.title}
               </h1>
               <div className="d-flex justify-content-center">
-                <img
+                <LazyLoadImage
                   className="img-fluid rounded-3"
                   src={urlFor(singlePost.mainImage).url()}
                   alt={singlePost.title}
@@ -128,13 +127,14 @@ export default function SinglePost() {
             </div>
             <div className="flex justify-between">
               <figure className="">
-                <img
-                  className="rounded-full w-4 border-2 border-green-600 bg-purple-600"
+                <LazyLoadImage
+                  className=" w-4"
                   src={urlFor(singlePost.authorImage).url()}
                   alt={singlePost.name}
                   style={{
                     width: "60px",
-                    height: "60px"
+                    height: "60px",
+                    background: colorChanger(),
                   }}
                 />
 
@@ -171,7 +171,7 @@ export default function SinglePost() {
             <BlockContent
               blocks={singlePost.body}
               serializers={serializers}
-              projectId="0qhx0jng"
+              projectId = "0qhx0jng"
               dataset="production"
               className="mt-8 prose text-current  prose-slate mx-auto lg:prose-lg xl:prose-xl"
             />
