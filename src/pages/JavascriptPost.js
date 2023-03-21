@@ -81,46 +81,7 @@ export default function JavascriptPosts() {
             {searchInput.length > 1
               ? filteredResults &&
                 filteredResults.map((post, index) =>
-                  <Link
-                    to={"/post/" + post.slug.current}
-                    key={post.slug.current}
-                    className="flex flex-col  border border-gray-400 shadow-sm rounded"
-                  >
-                    <img
-                      src={post.mainImage.asset.url}
-                      alt={post.title}
-                      className="object-cover w-full h-32 rounded-t"
-                    />
-                    <div className="flexflex-col flex-1">
-                      <h2
-                        rel="noopener noreferrer"
-                        to={"/post/" + post.slug.current}
-                        className="text-md font-bold leading-snug  px-3 py-2 border-b"
-                      >
-                        {post.title}
-                      </h2>
-                      <div className="flex flex-wrap justify-between leading-snug px-3 py-1 border-b">
-                        <div className="flex gap-1 ">
-                          <span className="font-bold text-green-600">#</span>
-                          <p className="font-semibold break-words ">
-                            {post.tags + ";"}
-                          </p>
-                        </div>
-                        <span className="opacity-60">
-                          {new Date(post.date).toLocaleDateString()}
-                        </span>
-                      </div>
-                      <div className="text-md font-normal leading-snug p-3">
-                        <h4 className="line-clamp-3 ">
-                          {post.description}
-                        </h4>
-                      </div>
-                    </div>
-                  </Link>
-                )
-              : postData &&
-                postData.map((post, index) =>
-                  <Link
+                <Link
                     to={"/post/" + post.slug.current}
                     key={post.slug.current}
                     className="flex md:flex-row flex-col shadow-md rounded w-full"
@@ -128,7 +89,7 @@ export default function JavascriptPosts() {
                     <img
                       src={post.mainImage.asset.url}
                       alt={post.title}
-                      className="h-60 md:w-80 "
+                      className="h-80 w-full md:h-80 md:w-96 lg:h-60 lg:w-80"
                     />
                     <div className=" ">
                       <h2
@@ -145,7 +106,47 @@ export default function JavascriptPosts() {
                         </span>
                         <div className="flex gap-1">
                           🧠
-                          <p className="font-bold break-words opacity-80">
+                          <p className="font-bold break-all opacity-80">
+                            {post.tags + ";"}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="text-md  font-bold leading-snug p-3">
+                        <h4 className="line-clamp-3  ">
+                          {post.description}
+                        </h4>
+                      </div>
+                    </div>
+                  </Link>
+                )
+              : postData &&
+                postData.map((post, index) =>
+                  <Link
+                    to={"/post/" + post.slug.current}
+                    key={post.slug.current}
+                    className="flex md:flex-row flex-col shadow-md rounded w-full"
+                  >
+                    <img
+                      src={post.mainImage.asset.url}
+                      alt={post.title}
+                      className="h-80 w-full md:h-80 md:w-96 lg:h-60 lg:w-80"
+                    />
+                    <div className=" ">
+                      <h2
+                        rel="noopener noreferrer"
+                        to={"/post/" + post.slug.current}
+                        className="text-3xl text-indigo-500 font-black leading-snug px-3 py-2"
+                      >
+                        {post.title}
+                      </h2>
+                      <div className="flex flex-wrap gap-4 leading-snug px-3 py-1">
+                        <span className="opacity-80 font-bold">
+                          🗓️
+                          {" " + new Date(post.date).toLocaleDateString()}
+                        </span>
+                        <div className="flex gap-1">
+                          🧠
+                          <p className="font-bold break-all opacity-80">
                             {post.tags + ";"}
                           </p>
                         </div>

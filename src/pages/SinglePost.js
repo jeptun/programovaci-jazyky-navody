@@ -1,23 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import sanityClient from "../client.js";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import BlockContent from "@sanity/block-content-to-react";
 import imageUrlBuilder from "@sanity/image-url";
 import Loader from "../components/Loader.jsx";
-// import colorChanger from "../func/colorChanger.js";
-import QRCode from "react-qr-code";
-import { BsFillArrowDownCircleFill } from "react-icons/bs";
-import { FaLink } from "react-icons/fa";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { Helmet } from "react-helmet";
 
-//Todo Smazat nepotrebne importy
-//Todo Smazat Testovaci komponenty
-//Todo Smazat nepotrebne komentare
-//Todo Smazat Todo
-//Todo Nastavit privatni ID pro stranky
+import { Helmet } from "react-helmet";
 
 /**
  * Builder pro main zobrazení main obrazku
@@ -118,7 +108,7 @@ export default function SinglePost() {
         />
       </Helmet>
       <div className="">
-        <aside className=" relative w-full px-6 py-6  md:max-w-3xl md:mx-auto lg:max-w-4xl lg:pt-16 lg:pb-28">
+        <aside className=" relative w-full px-6 py-6  md:max-w-3xl md:mx-auto lg:max-w-4xl lg:pt-26 lg:pb-8">
           <div className="">
             <div
               className="overflow-hidden my-4 "
@@ -127,7 +117,7 @@ export default function SinglePost() {
                 maxWidth: "100%"
               }}
             >
-              <h1 className=" sm:text-lg md:text-4xl lg:text-6xl font-black my-8">
+              <h1 className=" text-4xl sm:text-5xl md:text-6xl font-extrabold my-8">
                 {singlePost.title}
               </h1>
               <div className="d-flex justify-content-center">
@@ -138,113 +128,55 @@ export default function SinglePost() {
                 />
               </div>
             </div>
-
-            <div className=" d-flex gap-2 justify-content-end align-items-center">
-              <blockquote className="m-0">photo from</blockquote>
-              <a
-                href={singlePost.imagesSource}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {singlePost.imagesSourceFrom}
-              </a>
-            </div>
-            <div className="row ">
-              <figure className="col-12 col-sm-4  d-flex gap-1  h-100   ">
+            <div className="flex justify-between">
+              <figure className="">
                 <img
-                  className="  rounded-circle w-4"
+                  className="rounded-full w-4 border-2 border-green-600 bg-purple-600"
                   src={urlFor(singlePost.authorImage).url()}
                   alt={singlePost.name}
                   style={{
-                    width: "50px",
-                    height: "50px"
+                    width: "60px",
+                    height: "60px"
                   }}
                 />
 
-                <div>
-                  <div className="text-dark fw-bold fs-5">
+                <div className="flex justify-between mt-2">
+                  <div className="font-semibold">
                     {singlePost.name}
-                  </div>
-
-                  <div className="text-muted">
-                    Last updated:{" "}
-                    {new Date(singlePost.date).toLocaleDateString()}
                   </div>
                 </div>
               </figure>
-              {/* <div className="col-12  col-sm-8 d-flex justify-content-end  h-100">
-                <div className="d-flex gap-1 align-items-center ">
-                  <Link
-                    onClick={handleClick}
-                    to={singlePost.slug}
-                    className="lead nav-link fs-3 p-0 text-dark"
+              <div className="flex flex-col gap-4 mt-5">
+                <div className="flex gap-2">
+                  <p className="m-0">photo from</p>
+                  <a
+                    href={singlePost.imagesSource}
+                    target="_blank"
+                    rel="noreferrer"
                   >
-                    <BsFillArrowDownCircleFill
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        color: "#43b581",
-                      }}
-                    />
-                  </Link>
-
-                  <div className="pe-auto btn">
-                    <CopyToClipboard
-                      className=" fs-3"
-                      text={singlePost.prewlink}
-                    >
-                      <FaLink
-                        style={{
-                          width: "18px",
-                          height: "18px",
-                          color: "#43b581",
-                        }}
-                      />
-                    </CopyToClipboard>
-                  </div>
-                  <div className="w-100 h-100 d-flex justify-content-center align-items-center">
-                    <div
-                      className="my-3 p-2 border border-2 border-dark rounded-4"
-                      style={{
-                        height: "auto",
-                        maxWidth: "82px",
-                        width: "100%",
-                        display: singlePost.prewlink ? "flex" : "none",
-                      }}
-                    >
-                      <QRCode
-                        size={256}
-                        fgColor="#5661f2"
-                        style={{
-                          height: "auto",
-                          maxWidth: "100%",
-                          width: "100%",
-                        }}
-                        value={singlePost.prewlink ? singlePost.prewlink : "0"}
-                        viewBox={`0 0 256 256`}
-                      />
-                    </div>
-                  </div>
+                    {singlePost.imagesSourceFrom}
+                  </a>
                 </div>
-              </div> */}
+                <div className="text-muted">
+                  Last updated: {new Date(singlePost.date).toLocaleDateString()}
+                </div>
+              </div>
             </div>
           </div>
         </aside>
-        <section className="" ref={ref}>
-          <article className="relative w-full px-6 py-6  md:max-w-3xl md:mx-auto lg:max-w-4xl lg:pt-16 lg:pb-28">
-            <section
-              style={{
-                display: singlePost.body ? "block" : "none"
-              }}
-            >
-              <BlockContent
-                blocks={singlePost.body}
-                serializers={serializers}
-                projectId="0qhx0jng"
-                dataset="production"
-                className="mt-8 prose text-current  prose-slate mx-auto lg:prose-lg xl:prose-xl"
-              />
-            </section>
+        <section className="relative w-full px-6 py-6  md:max-w-3xl md:mx-auto lg:max-w-4xl lg:pt-2 lg:pb-28">
+          <article
+            style={{
+              display: singlePost.body ? "block" : "none"
+            }}
+          >
+            <BlockContent
+              blocks={singlePost.body}
+              serializers={serializers}
+              projectId="0qhx0jng"
+              dataset="production"
+              className="mt-8 prose text-current  prose-slate mx-auto lg:prose-lg xl:prose-xl"
+            />
           </article>
         </section>
       </div>
