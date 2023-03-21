@@ -1,15 +1,36 @@
-
+import React, { useState, useEffect } from "react";
+import sanityClient from "../client.js";
 import { NavLink, Link } from "react-router-dom";
+import Loader from "../components/Loader.jsx";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+// import required modules
+import { Autoplay, Navigation } from "swiper";
 
 export default function NavBarTest() {
+  const [postData, setPost] = useState(null);
+
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `*[_type == "hotTips"]{
+                description,
+                category,
+            }`
+      )
+      .then(data => setPost(data))
+      .catch(console.error);
+  }, []);
+
+  if (!postData) return <Loader />;
 
   return (
-    <nav className="col-md-2 d-md-block border-end pe-0">
-      <div className="sticky-top  ">
-        <NavLink
+    <nav className="flex sm:w-1/12 nav shadow-sm">
+      <div className=" sticky w-full flex flex-col top-0 sm:h-screen flex-nowrap ">
+        {/* <NavLink
           to="/"
           exact
-          className="d-flex align-items-center pb-3  link-dark text-decoration-none border-bottom"
+          className="d-flex align-items-center p-4 link-dark text-decoration-none border-bottom text-xl"
         >
           <svg
             className="bi me-2"
@@ -22,34 +43,48 @@ export default function NavBarTest() {
             ></path>
           </svg>
           <span className="fs-8 fw-semibold ">Návody jazyku</span>
-        </NavLink>
+        </NavLink> */}
 
-        <ul className="list-unstyled d-md-block d-flex nav-scroller ">
-          <li className="mx-2 my-1">
+        <ul className="list-unstyled flex sm:flex-col text-lg pl-4 pt-4 gap-4">
+          <li className="">
             <Link
               to="/javascriptPosts"
-              className="link-dark btn-primary rounded my-1  ms-3 bg-white"
-            >JS/TS</Link>
+              className="text-3xl font-bold  underline  hover:underline decoration-4
+             hover:decoration-[#0f9d58] decoration-yellow-400"
+            >
+              JS/TS
+            </Link>
           </li>
-          <li className="mx-2 my-1">
+          <li className="">
             <Link
               to="/ReactPost"
-              className="link-dark btn-primary rounded my-1  ms-3 bg-white"
-            >React</Link>
+              className="text-3xl font-bold  underline  hover:underline decoration-4
+             hover:decoration-[#0f9d58] decoration-blue-400"
+            >
+              React
+            </Link>
           </li>
-          <li className="mx-2 my-1">
+          <li className="">
             <Link
               to="/csharpposts"
-              className="link-dark btn-primary rounded my-1  ms-3 bg-white"
-            >Csharp</Link>
+              className="text-3xl font-bold  underline  hover:underline decoration-4
+             hover:decoration-[#0f9d58] decoration-green-400"
+            >
+              Csharp
+            </Link>
           </li>
-          <li className="mx-2 my-1">
+          <li className="">
             <Link
               to="/otherPosts"
-              className="link-dark btn-primary rounded my-1  ms-3 bg-white"
-            >Ostatní</Link>
+              className="text-3xl font-bold  underline  hover:underline decoration-4
+             hover:decoration-[#0f9d58] decoration-purple-400"
+            >
+              Ostatní
+            </Link>
           </li>
         </ul>
+
+      
       </div>
     </nav>
   );

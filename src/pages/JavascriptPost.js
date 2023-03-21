@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import sanityClient from "../client.js";
-import colorChanger from "../func/colorChanger.js";
 import Loader from "../components/Loader.jsx";
-import imageUrlBuilder from "@sanity/image-url";
 import { Helmet } from "react-helmet";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
+//Todo Dodelat header
 /**
  * Builder pro main zobrazení main obrazku
  */
-const builder = imageUrlBuilder(sanityClient);
-function urlFor(source) {
-  return builder.image(source);
-}
 export default function JavascriptPosts() {
   const [postData, setPost] = useState(null);
   const [searchInput, setSearchInput] = useState("");
@@ -30,23 +27,24 @@ export default function JavascriptPosts() {
                 githublink,
                 "name": author->name,
                 "authorImage": author->image,
+                
                 mainImage{
                     asset->{
                         _id,
                         url
                     },
-                    alt,                  
+                    alt,
                 }
             }`
       )
-      .then((data) => setPost(data))
+      .then(data => setPost(data))
       .catch(console.error);
   }, []);
 
-  const searchItems = (searchValue) => {
+  const searchItems = searchValue => {
     setSearchInput(searchValue);
     if (searchInput !== "") {
-      const filteredData = postData.filter((item) => {
+      const filteredData = postData.filter(item => {
         return Object.values(item)
           .join("")
           .toLowerCase()
@@ -57,140 +55,123 @@ export default function JavascriptPosts() {
       setFilteredResults(postData);
     }
   };
+
   if (!postData) return <Loader />;
 
   return (
-    <main className="col-md-10 ps-4">
+    <main className="w-full pl-2">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Na této stránce naleznete Javascript projekty</title>
-        <link rel="canonical" href="http://mysite.com/example" />
-      </Helmet>
-
-      <section className="container">
-        <h1 className="">Projekty</h1>
-        <h2 className="">Na této stránce naleznete mé projekty</h2>
-
-        <input
-          className="search-input"
-          type="text"
-          placeholder="Vyhledávání"
-          onChange={(e) => searchItems(e.target.value)}
+        <title>Moje Návody - Javascript</title>
+        <meta name="description" content="Javascript a Typescript Návody" />
+        <meta property="og:title" content="Javascript a Typescript Návody" />
+        <meta
+          property="og:description"
+          content="  Vítejte na blogu, který slouží jako zdroj informací pro všechny vývojáře a programátory!
+         Najdete zde rozmanitou škálu témat, včetně Javascriptu, Typescriptu, C#, Reactu, CSS a mnoho dalšího."
         />
-
-        <div className="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
-          {searchInput.length > 1
-            ? filteredResults &&
-              filteredResults.map((post, index) => (
-                <div className="col" key={index}>
-                  <div
-                    className="card card-cover h-100 overflow-hidden text-white rounded-5 "
-                    style={{
-                      backgroundImage: `url(${post.mainImage.asset.url})`,
-                    }}
+        <meta
+          name="seznam-ranking-position"
+          content="query-exact: 1.0; query-broad: 1.3; (Google compatible)"
+        />
+      </Helmet>
+      <section className="py-6 sm:py-12 max-w-6xl mx-auto">
+        <div className="container p-6 mx-auto space-y-8">
+          <div className="space-y-2 text-center">
+            <h2 className="text-3xl font-bold">Partem reprimique an pro</h2>
+            <p className="font-serif text-sm ">
+              Qualisque erroribus usu at, duo te agam soluta mucius.
+            </p>
+            <input
+              className="search-input text-black border  shadow-lg p-2"
+              type="text"
+              placeholder="Vyhledávání"
+              onChange={e => searchItems(e.target.value)}
+            />
+          </div>
+          <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-1 lg:grid-cols-1 p-8">
+            {searchInput.length > 1
+              ? filteredResults &&
+                filteredResults.map((post, index) =>
+                  <Link
+                    to={"/post/" + post.slug.current}
+                    key={post.slug.current}
+                    className="flex md:flex-row flex-col shadow-md rounded w-full"
                   >
-                    <div className="d-flex flex-column h-100 p-3 pb-3 text-white ">
-                      <Link
+                    <LazyLoadImage
+                      src={post.mainImage.asset.url}
+                      className="h-80 w-full md:h-80 md:w-96 lg:h-60 lg:w-80"
+                      alt={post.title}
+                    />
+                    <div className=" ">
+                      <h2
+                        rel="noopener noreferrer"
                         to={"/post/" + post.slug.current}
-                        key={post.slug.current}
-                        className="nav-link"
+                        className="text-3xl text-indigo-500 font-black leading-snug px-3 py-2"
                       >
-                        <h2 className="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold text-white text-center">
-                          {post.title}
-                        </h2>
-                      </Link>
-                      <ul className="d-flex list-unstyled mt-auto">
-                        <li className="me-auto">
-                          <img
-                            src={urlFor(post.authorImage).url()}
-                            alt="Bootstrap"
-                            width="42"
-                            height="42"
-                            className="rounded-circle  "
-                            style={{
-                              background: "#000",
-                            }}
-                          />
-                        </li>
-                        <li className="d-flex align-items-center me-2">
-                          <div className="">
-                            {new Date(post.date).toLocaleDateString()}
-                          </div>
-                        </li>
-                        <li className="d-flex align-items-center">
-                          <div
-                            className=" rounded p-1"
-                            style={{
-                              background: colorChanger(),
-                            }}
-                          >
-                            {post.tags}
-                          </div>
-                        </li>
-                      </ul>
+                        {post.title}
+                      </h2>
+                      <div className="flex flex-wrap gap-4 leading-snug px-3 py-1">
+                        <span className="opacity-80 font-bold">
+                          🗓️
+                          {" " + new Date(post.date).toLocaleDateString()}
+                        </span>
+                        <div className="flex gap-1">
+                          🧠
+                          <p className="font-bold break-all opacity-80">
+                            {post.tags + ";"}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="text-md  font-bold leading-snug p-3">
+                        <h4 className="line-clamp-3  ">
+                          {post.description}
+                        </h4>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              ))
-            : postData &&
-              postData.map((post, index) => (
-                <div className="col" key={index}>
-                  <div
-                  id="my-card"
-                    className="card my-card card-cover h-100 overflow-hidden text-white rounded-5 "
-                    style={{
-                      backgroundImage: `url(${post.mainImage.asset.url})`,
-                   
-                    }}
+                  </Link>
+                )
+              : postData &&
+                postData.map((post, index) =>
+                  <Link
+                    to={"/post/" + post.slug.current}
+                    key={post.slug.current}
+                    className="flex md:flex-row flex-col shadow-md rounded w-full"
                   >
-                    <div
-                      className="d-flex flex-column h-100 p-3 pb-3 text-white"
-                      style={{
-                        background: "#0a1d1670",
-                      }}
-                    >
-                      <Link
+                    <LazyLoadImage
+                      src={post.mainImage.asset.url}
+                      className="h-80 w-full md:h-80 md:w-96 lg:h-60 lg:w-80"
+                      alt={post.title}
+                    />
+                    <div className=" ">
+                      <h2
+                        rel="noopener noreferrer"
                         to={"/post/" + post.slug.current}
-                        key={post.slug.current}
-                        className="nav-link"
+                        className="text-3xl text-indigo-500 font-black leading-snug px-3 py-2"
                       >
-                        <h2 className="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold text-white text-center">
-                          {post.title}
-                        </h2>
-                      </Link>
-                      <ul className="d-flex list-unstyled mt-auto">
-                        <li className="me-auto">
-                          <img
-                            src={urlFor(post.authorImage).url()}
-                            alt="Bootstrap"
-                            width="42"
-                            height="42"
-                            className="rounded-circle"
-                            style={{
-                              background: "#000",
-                            }}
-                          />
-                        </li>
-                        <li className="d-flex align-items-center me-2">
-                          <div className="">
-                            {new Date(post.date).toLocaleDateString()}
-                          </div>
-                        </li>
-                        <li className="d-flex align-items-center">
-                          <div
-                            className=" rounded p-1"
-                            style={{
-                              background: colorChanger(),
-                            }}
-                          >
-                            {post.tags}
-                          </div>
-                        </li>
-                      </ul>
+                        {post.title}
+                      </h2>
+                      <div className="flex flex-wrap gap-4 leading-snug px-3 py-1">
+                        <span className="opacity-80 font-bold">
+                          🗓️
+                          {" " + new Date(post.date).toLocaleDateString()}
+                        </span>
+                        <div className="flex gap-1">
+                          🧠
+                          <p className="font-bold break-all opacity-80">
+                            {post.tags + ";"}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="text-md  font-bold leading-snug p-3">
+                        <h4 className="line-clamp-3  ">
+                          {post.description}
+                        </h4>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              ))}
+                  </Link>
+                )}
+          </div>
         </div>
       </section>
     </main>
