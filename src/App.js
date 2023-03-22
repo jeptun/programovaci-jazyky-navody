@@ -16,9 +16,9 @@ function App() {
         <Switch>
           <Route component={Home} path="/" exact />
           <Route component={SinglePost} path="/post/:slug" />
-          <Route component={JavascriptPosts} path="/javascriptPosts" />
-          <Route component={CsharpPosts} path="/csharpPosts" />
-          <Route component={ReactPost} path="/reactPost" />
+          <Route component={JavascriptPosts} path="/JavascriptPosts" />
+          <Route component={CsharpPosts} path="/CsharpPosts" />
+          <Route component={ReactPost} path="/ReactPost" />
           <Route component={OtherPosts} path="/otherPosts" />
         </Switch>
       </div>
