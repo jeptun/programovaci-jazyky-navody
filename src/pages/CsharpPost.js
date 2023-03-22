@@ -66,7 +66,6 @@ export default function CsharpPost() {
         <meta property="og:title" content="Různé návody v Csharp pro programátory a kodéry."/>
         <meta property="og:description" content="  Vítejte na blogu, který slouží jako zdroj informací pro všechny vývojáře a programátory!
          Najdete zde rozmanitou škálu témat, včetně Javascriptu, Typescriptu, C#, Reactu, CSS a mnoho dalšího."/>
-        <meta property="og:image" content="https://jecas.cz/files/article/input-range.png"/>
         <meta
           name="seznam-ranking-position"
           content="query-exact: 1.0; query-broad: 1.3; (Google compatible)"
