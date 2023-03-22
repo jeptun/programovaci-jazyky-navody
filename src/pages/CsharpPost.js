@@ -75,9 +75,9 @@ export default function CsharpPost() {
       <section className="py-6 sm:py-12 max-w-6xl mx-auto">
         <div className="container p-6 mx-auto space-y-8">
           <div className="space-y-2 text-center">
-            <h2 className="text-3xl font-bold">Partem reprimique an pro</h2>
+          <h2 className="text-3xl font-bold">Csharp články</h2>
             <p className="font-serif text-sm ">
-              Qualisque erroribus usu at, duo te agam soluta mucius.
+              Zadej název článku, který hledáš.
             </p>
             <input
               className="search-input text-black border  shadow-lg p-2"
