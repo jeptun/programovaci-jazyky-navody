@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import sanityClient from "../client.js";
 import Loader from "../components/Loader.jsx";
 import { Helmet } from "react-helmet";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Cart } from "../components/Cart.jsx";
 //Todo Dodelat header
 /**
  * Builder pro main zobrazení main obrazku
@@ -84,97 +83,36 @@ export default function ReactPost() {
         <div className="container p-6 mx-auto space-y-8">
           <div className="space-y-2 text-center">
           <h2 className="text-3xl font-bold">React články</h2>
-            <p className="font-serif text-sm ">
-              Zadej název článku, který hledáš.
-            </p>
-            <input
-              className="search-input text-black border  shadow-lg p-2"
-              type="text"
-              placeholder="Vyhledávání"
-              onChange={e => searchItems(e.target.value)}
-            />
+          <p className="text-xl ">Zadej název článku, který hledáš.</p>
+            <div className="flex m-auto rounded-md overflow-hidde w-3/4 gap-2">
+              <input
+                type="text"
+                className=" px-3 py-2 bg-white border-2 shadow-sm border-slate-300 text-black
+                          placeholder-slate-400 disabled:bg-slate-50 
+                          disabled:border-slate-200 focus:outline-none focus:border-indigo-500
+                          focus:ring-indigo-600 block w-full rounded-md sm:text-lg font-medium
+                            focus:ring-1  disabled:shadow-none"
+                onChange={e => searchItems(e.target.value)}
+                placeholder="Vyhledávání...."
+                value={searchInput}
+              />
+              <button
+                className="  text-2xl  "
+                onClick={() => setSearchInput("")}
+              >
+                ❌
+              </button>
+            </div>
           </div>
           <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-1 lg:grid-cols-1 p-8">
             {searchInput.length > 1
               ? filteredResults &&
                 filteredResults.map((post, index) =>
-                  <Link
-                    to={"/post/" + post.slug.current}
-                    key={post.slug.current}
-                    className="flex md:flex-row flex-col shadow-md rounded w-full"
-                  >
-                    <LazyLoadImage
-                      src={post.mainImage.asset.url}
-                      className="h-80 w-full md:h-80 md:w-96 lg:h-60 lg:w-80"
-                      alt={post.title}
-                    />
-                    <div className=" ">
-                      <h2
-                        rel="noopener noreferrer"
-                        to={"/post/" + post.slug.current}
-                        className="text-3xl text-indigo-500 font-black leading-snug px-3 py-2"
-                      >
-                        {post.title}
-                      </h2>
-                      <div className="flex flex-wrap gap-4 leading-snug px-3 py-1">
-                        <span className="opacity-80 font-bold">
-                          🗓️
-                          {" " + new Date(post.date).toLocaleDateString()}
-                        </span>
-                        <div className="flex gap-1">
-                          🧠
-                          <p className="font-bold break-all opacity-80">
-                            {post.tags + ";"}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="text-md  font-bold leading-snug p-3">
-                        <h4 className="line-clamp-3  ">
-                          {post.description}
-                        </h4>
-                      </div>
-                    </div>
-                  </Link>
+                <Cart brand={post} key={index}/>
                 )
               : postData &&
                 postData.map((post, index) =>
-                  <Link
-                    to={"/post/" + post.slug.current}
-                    key={post.slug.current}
-                    className="flex md:flex-row flex-col shadow-md rounded w-full"
-                  >
-                    <LazyLoadImage
-                      src={post.mainImage.asset.url}
-                      className="h-80 w-full md:h-80 md:w-96 lg:h-60 lg:w-80"
-                      alt={post.title}
-                    />
-                    <div className=" ">
-                      <h2
-                        rel="noopener noreferrer"
-                        to={"/post/" + post.slug.current}
-                        className="text-3xl text-indigo-500 font-black leading-snug px-3 py-2"
-                      >
-                        {post.title}
-                      </h2>
-                      <div className="flex flex-wrap gap-4 leading-snug px-3 py-1">
-                        <span className="opacity-80 font-bold">
-                          🗓️
-                          {" " + new Date(post.date).toLocaleDateString()}
-                        </span>
-                        <div className="flex gap-1">
-                          🧠
-                          <p className="font-bold break-all opacity-80">
-                            {post.tags + ";"}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="text-md  font-bold leading-snug p-3">
-                        <h4 className="line-clamp-3  ">
-                          {post.description}
-                        </h4>
-                      </div>
-                    </div>
-                  </Link>
+                  <Cart brand={post} key={index}/>
                 )}
           </div>
         </div>
