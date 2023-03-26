@@ -5,14 +5,10 @@ import { Helmet } from "react-helmet";
 import { Cart } from "../components/Cart.jsx";
 
 //Todo Dodelat header
-/**
- * Builder pro main zobrazení main obrazku
- */
 export default function JavascriptPosts() {
   const [postData, setPost] = useState(null);
   const [searchInput, setSearchInput] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
-
 
   useEffect(() => {
     sanityClient
@@ -22,12 +18,11 @@ export default function JavascriptPosts() {
                 slug,
                 description,
                 tags,
-                date,
-                author,
-                githublink,
+                releaseDate,
+                rating,
+                author,              
                 "name": author->name,
                 "authorImage": author->image,
-                
                 mainImage{
                     asset->{
                         _id,
@@ -41,20 +36,28 @@ export default function JavascriptPosts() {
       .catch(console.error);
   }, []);
 
-  const searchItems = searchValue => {
+  const searchItems = (searchValue) => {
     setSearchInput(searchValue);
-    if (searchInput !== "") {
+    if (searchValue !== "") {
       const filteredData = postData.filter(item => {
         return Object.values(item)
           .join("")
           .toLowerCase()
-          .includes(searchInput.toLowerCase());
+          .includes(searchValue.toLowerCase());
       });
       setFilteredResults(filteredData);
     } else {
       setFilteredResults(postData);
     }
   };
+
+  // function sortByDate(events) {
+  //   return events.sort((a, b) => {
+  //     const dateA = new Date(a.brand.date).toLocaleDateString();
+  //     const dateB = new Date(b.brand.date).toLocaleDateString();
+  //     return dateA - dateB;
+  //   });
+  // }
 
   if (!postData) return <Loader />;
 
@@ -94,10 +97,7 @@ export default function JavascriptPosts() {
                 placeholder="Vyhledávání...."
                 value={searchInput}
               />
-              <button
-                className="text-2xl"
-                onClick={() => setSearchInput("")}
-              >
+              <button className="text-2xl" onClick={() => setSearchInput("")}>
                 ❌
               </button>
             </div>
@@ -106,11 +106,11 @@ export default function JavascriptPosts() {
             {searchInput.length > 1
               ? filteredResults &&
                 filteredResults.map((post, index) =>
-                <Cart brand={post} key={index}/>
+                  <Cart brand={post} key={index} />
                 )
               : postData &&
                 postData.map((post, index) =>
-                  <Cart brand={post} key={index}/>
+                  <Cart brand={post} key={index} />
                 )}
           </div>
         </div>

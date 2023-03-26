@@ -1,28 +1,8 @@
-import React, { useEffect, useState } from "react";
-import sanityClient from "../client.js";
 import { NavLink } from "react-router-dom";
-import Loader from "../components/Loader.jsx";
 import { Helmet } from "react-helmet";
 
-//Todo pridat Seo
-
 export default function Home() {
-  const [author, setAuthor] = useState(null);
 
-  useEffect(() => {
-    sanityClient
-      .fetch(
-        `*[_type == "author"]{
-          name,
-          "bio": bio[0].children[0].text,
-          "authorImage": image.asset->url,
-      }`
-      )
-      .then(data => setAuthor(data[0]))
-      .catch(console.error);
-  }, []);
-
-  if (!author) return <Loader />;
 
   return (
     <main className="h-screen px-4 flex lg:items-center">

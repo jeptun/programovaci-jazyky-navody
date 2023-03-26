@@ -8,10 +8,10 @@ import ReactPost from "./pages/ReactPost";
 import OtherPosts from "./pages/OtherPost";
 import Toggles from "./components/Toggles";
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
-      <div className=" bg-idigo-50 flex flex-col m-auto">
+      <div className="bg-idigo-50 flex flex-col m-auto">
         <Toggles />
         <Switch>
           <Route component={Home} path="/" exact />
@@ -25,5 +25,3 @@ function App() {
     </BrowserRouter>
   );
 }
-
-export default App;

@@ -41,7 +41,7 @@ export default function SinglePost() {
             imagesSource,
             imagesSourceFrom,
             tags,
-            date,
+            releaseDate,
             body,
             description,
             prewlink,
@@ -146,7 +146,7 @@ export default function SinglePost() {
               </figure>
               <div className="flex flex-col gap-4 mt-5">
                 <div className="flex gap-2">
-                  <p className="m-0">photo from</p>
+                  <p className="m-0">🖼️</p>
                   <a
                     href={singlePost.imagesSource}
                     target="_blank"
@@ -156,7 +156,7 @@ export default function SinglePost() {
                   </a>
                 </div>
                 <div className="text-muted">
-                  Last updated: {new Date(singlePost.date).toLocaleDateString()}
+                  🗓️{" "+singlePost.releaseDate}
                 </div>
               </div>
             </div>
