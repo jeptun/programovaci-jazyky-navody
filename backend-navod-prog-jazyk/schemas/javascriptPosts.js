@@ -3,6 +3,7 @@ export default {
   name: "javascriptPosts",
   title: "Javascript Posts",
   type: "document",
+  
   fields: [
     {
       name: "title",

@@ -4,7 +4,7 @@ import Loader from "../components/Loader.jsx";
 import { Helmet } from "react-helmet";
 import { Cart } from "../components/Cart.jsx";
 
-//Todo Dodelat header
+//Todo dodelat v csharp, react, other, zmenu v schema a ve fetch query
 export default function JavascriptPosts() {
   const [postData, setPost] = useState(null);
   const [searchInput, setSearchInput] = useState("");
@@ -36,7 +36,7 @@ export default function JavascriptPosts() {
       .catch(console.error);
   }, []);
 
-  const searchItems = (searchValue) => {
+  const searchItems = searchValue => {
     setSearchInput(searchValue);
     if (searchValue !== "") {
       const filteredData = postData.filter(item => {
@@ -51,14 +51,19 @@ export default function JavascriptPosts() {
     }
   };
 
-  // function sortByDate(events) {
-  //   return events.sort((a, b) => {
-  //     const dateA = new Date(a.brand.date).toLocaleDateString();
-  //     const dateB = new Date(b.brand.date).toLocaleDateString();
-  //     return dateA - dateB;
-  //   });
-  // }
+  console.log(postData);
 
+  function sortByDate(events) {
+    return events.sort((a, b) => {
+      const dateA = new Date(a.props.brand.releaseDate).toLocaleDateString();
+      const dateB = new Date(b.props.brand.releaseDate).toLocaleDateString();
+      console.log("dateA", dateA);
+      console.log("daten", dateB);
+      let dateFinal = dateA - dateB;
+      return dateFinal;
+    });
+  }
+  //console.log('sortByDate(postData)', sortByDate('2002-01-01', '2001-01-01', '2003-01-01'))
   if (!postData) return <Loader />;
 
   return (
@@ -105,12 +110,16 @@ export default function JavascriptPosts() {
           <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-1 lg:grid-cols-1 p-8">
             {searchInput.length > 1
               ? filteredResults &&
-                filteredResults.map((post, index) =>
-                  <Cart brand={post} key={index} />
+                sortByDate(
+                  filteredResults.map((post, index) =>
+                    <Cart brand={post} key={index} />
+                  )
                 )
               : postData &&
-                postData.map((post, index) =>
-                  <Cart brand={post} key={index} />
+                sortByDate(
+                  postData.map((post, index) =>
+                    <Cart brand={post} key={index} />
+                  )
                 )}
           </div>
         </div>

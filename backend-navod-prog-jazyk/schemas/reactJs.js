@@ -3,12 +3,13 @@ export default {
   name: "reactJs",
   title: "React.js Posts",
   type: "document",
+
   fields: [
     {
       name: "title",
       title: "Title",
       description: "*Povinné",
-      type: "string",
+      type: "string"
     },
     {
       name: "slug",
@@ -17,24 +18,15 @@ export default {
       type: "slug",
       options: {
         source: "title",
-          slugify: input => input
-                       .toLowerCase()
-                       .replace(/\s+/g, '-')
-                       .slice(0, 96)
-      },
-    },
-    {
-      name: "ids",
-      title: "Ids",
-      description: "*Povinné číslo určuje pořadí v zobrazení",
-      type: "string",
+        slugify: input => input.toLowerCase().replace(/\s+/g, "-").slice(0, 96)
+      }
     },
     {
       name: "author",
       title: "Author",
       description: "*Povinné",
       type: "reference",
-      to: { type: "author" },
+      to: { type: "author" }
     },
     {
       name: "mainImage",
@@ -42,37 +34,37 @@ export default {
       type: "image",
       description: "Maly obrázek 640x426",
       options: {
-        hotspot: true,
-      },
+        hotspot: true
+      }
     },
     {
       name: "imagesSource",
       title: "Images Source",
       description: "*Povinné",
-      type: "url",
+      type: "url"
     },
     {
       name: "imagesSourceFrom",
       title: "Images Source From",
       description: "*Povinné",
-      type: "string",
+      type: "string"
     },
     {
       title: "Description",
       name: "description",
       description: "Maximální délka 150 znaků",
-      type: "text",
+      type: "text"
     },
     {
-      name: "date",
-      type: "datetime",
-      description: "*Volitelné čas vytvoření ",
+      title: "Release Date",
+      name: "releaseDate",
+      type: "date"
     },
     {
       name: "body",
       title: "Body",
       description: "*Povinné",
-      type: "blockContent",
+      type: "blockContent"
     },
     {
       name: "tags",
@@ -81,14 +73,28 @@ export default {
       description: "Tagy odděluj mezerou",
       of: [
         {
-          type: "string",
-        },
+          type: "string"
+        }
       ],
       options: {
-        layout: "tags",
-      },
-    },
+        layout: "tags"
+      }
+    }
   ],
+
+  orderings: [
+    {
+      title: "Release Date",
+      name: "releaseDate",
+      by: [{ field: "releaseDate", direction: "asc" }]
+    },
+    {
+      title: "Rating",
+      name: "rating",
+      by: [{ field: "rating", direction: "desc" }]
+    }
+  ],
+  
   preview: {
     select: {
       title: "title",

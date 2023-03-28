@@ -105,6 +105,7 @@ export default function SinglePost() {
         />
       </Helmet>
       <div className="">
+        
         <aside className=" relative w-full px-6 py-6  md:max-w-3xl md:mx-auto lg:max-w-4xl lg:pt-26 lg:pb-8">
           <div className="">
             <div
@@ -162,6 +163,7 @@ export default function SinglePost() {
             </div>
           </div>
         </aside>
+
         <section className="relative w-full px-6 py-6  md:max-w-3xl md:mx-auto lg:max-w-4xl lg:pt-2 lg:pb-28">
           <article
             style={{
@@ -177,6 +179,7 @@ export default function SinglePost() {
             />
           </article>
         </section>
+
       </div>
     </main>
   );

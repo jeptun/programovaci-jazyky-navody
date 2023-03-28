@@ -25,7 +25,6 @@ export default function ReactPost() {
                 githublink,
                 "name": author->name,
                 "authorImage": author->image,
-                
                 mainImage{
                     asset->{
                         _id,
